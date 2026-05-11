@@ -1,0 +1,6 @@
+{
+  "name": "萃茶趣 - 專業茶飲點單系統",
+  "description": "提供完整的前台點單與後台管理功能，包含產品分類、訂單狀態追蹤及管理權限驗證。",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
