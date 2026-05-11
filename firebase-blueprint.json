@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A tea drink item in the menu",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "category": { "type": "string" },
+        "priceM": { "type": "number" },
+        "priceL": { "type": "number" },
+        "hasHot": { "type": "boolean" },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "category", "priceM"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "A category of products",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "order": { "type": "integer" }
+      },
+      "required": ["name", "order"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order",
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productId": { "type": "string" },
+              "name": { "type": "string" },
+              "size": { "type": "string", "enum": ["M", "L"] },
+              "quantity": { "type": "integer" },
+              "price": { "type": "number" },
+              "plus": { "type": "array", "items": { "type": "string" } },
+              "sugar": { "type": "string" },
+              "ice": { "type": "string" }
+            }
+          }
+        },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "preparing", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "customerNote": { "type": "string" }
+      },
+      "required": ["items", "total", "status", "createdAt"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "System settings like admin password",
+      "type": "object",
+      "properties": {
+        "adminPassword": { "type": "string" },
+        "isSetup": { "type": "boolean" }
+      }
+    }
+  },
+  "firestore": {
+    "categories": {
+      "schema": "Category",
+      "description": "Drink categories"
+    },
+    "products": {
+      "schema": "Product",
+      "description": "List of drinks"
+    },
+    "orders": {
+      "schema": "Order",
+      "description": "Customer orders"
+    },
+    "settings": {
+      "schema": "Settings",
+      "description": "Admin settings"
+    }
+  }
+}
